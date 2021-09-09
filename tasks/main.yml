@@ -30,9 +30,8 @@
     name: "{{ service.name }}"
     enabled: "{{ service.enabled }}"
     masked: "{{ service.masked }}"
-    state: "{{ service.state }}"
   loop:
-    - {'name':'sssd', 'enabled':'yes', 'masked':'no', 'state':'started'}
+    - {'name':'sssd', 'enabled':'yes', 'masked':'no'}
   loop_control:
     loop_var: 'service'
 
@@ -41,9 +40,8 @@
     name: "{{ service.name }}"
     enabled: "{{ service.enabled }}"
     masked: "{{ service.masked }}"
-    state: "{{ service.state }}"
   loop:
-    - {'name':'systemd-logind', 'enabled':'no', 'masked':'yes', 'state':'stopped'}
+    - {'name':'systemd-logind', 'enabled':'no', 'masked':'yes'}
   loop_control:
     loop_var: 'service'
   ignore_errors: true
@@ -54,9 +52,8 @@
     name: "{{ service.name }}"
     enabled: "{{ service.enabled }}"
     masked: "{{ service.masked }}"
-    state: "{{ service.state }}"
   loop:
-    - {'name':'autofs', 'enabled':'yes', 'masked':'no', 'state':'started'}
+    - {'name':'autofs', 'enabled':'yes', 'masked':'no'}
   loop_control:
     loop_var: 'service'
   when:
@@ -78,7 +75,6 @@
     name: "{{ service.name }}"
     enabled: "{{ service.enabled }}"
     masked: "{{ service.masked }}"
-    state: "{{ service.state }}"
   loop: "{{ os_specific_services }}"
   loop_control:
     loop_var: 'service'
