@@ -25,8 +25,8 @@ ldap_schema = rfc2307
 ldap_uri ={% for server in ldap_domain.servers %} ldap://{{ server }}{{ "" if loop.last else "," }}{% endfor %}
 
 ldap_search_base = {{ ldap_domain.searchbase }}
-fallback_homedir = {{ ldap_sssd_homedir }}
-default_shell = {{ ldap_default_shell }}
+#fallback_homedir = {{ ldap_sssd_homedir }}
+#default_shell = {{ ldap_default_shell }}
 enumerate = {{ ldap_domain.enumerate }}
 {% if ldap_domain.cache_credentials is defined %}cache_credentials = {{ ldap_domain.cache_credentials }}{% endif %}
 
