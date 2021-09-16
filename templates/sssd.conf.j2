@@ -6,10 +6,14 @@ services = nss, pam{% if ldap_domain.autofs_searchbase is defined %}, autofs{% e
 domains = {{ ldap_domain.name }}
 
 [nss]
+filter_groups = root
+filter_users = root
+reconnection_retries = 3
 
 [pam]
-{% if ldap_domain.cache_credentials_expiration is defined %}offline_credentials_expiration = {{ ldap_domain.cache_credentials_expiration }}{% endif %}
-
+{% if ldap_domain.cache_credentials_expiration is defined %}offline_credentials_expiration = {{ ldap_domain.cache_credentials_expiration }}
+offline_failed_login_delay = 5
+{% endif %}
 
 {% if ldap_domain.autofs_searchbase is defined %}[autofs]{% endif %}
 
@@ -37,6 +41,19 @@ ldap_default_authtok_type = password
 ldap_default_bind_dn = {{ ldap_domain.bind_dn }}
 ldap_default_authtok = {{ ldap_domain.bind_password }}
 {% endif %}
+
+# Map attributes to AD version/schema
+ldap_user_object_class = user
+ldap_group_object_class = group
+ldap_user_name = sAMAccountName
+ldap_user_fullname = sAMAccountName
+ldap_user_gecos = displayName
+ldap_user_uid_number = uidNumber
+ldap_user_gid_number = gidNumber
+ldap_user_home_directory = unixHomeDirectory
+ldap_user_shell = loginShell
+ldap_group_member = member
+ldap_user_shadow_last_change = pwdLastSet
 
 {% if ldap_domain.autofs_searchbase is defined %}
 autofs_provider=ldap
