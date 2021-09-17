@@ -1,11 +1,16 @@
 ---
 packages:
-  - 'openldap-clients'
-  - 'sssd-ldap'
-  - 'sudo'
-  - 'oddjob-mkhomedir'
-  - 'authconfig'
-
+#   - 'openldap-clients'
+#   - 'sssd-ldap'
+#   - 'sudo'
+#   - 'oddjob-mkhomedir'
+#   - 'authconfig'
+  - 'sssd'
+  - 'sssd-common'
+  - 'libnss-sss'
+  - 'libpam-sss'
+  - 'cm-libpam'
+  
 autofs_packages:
   - 'autofs'
 
